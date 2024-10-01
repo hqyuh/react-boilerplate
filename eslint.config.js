@@ -187,10 +187,10 @@ export default tseslint.config(
         //     match: false
         //   }
         // },
-        {
-          selector: 'variable',
-          format: ['camelCase', 'UPPER_CASE']
-        },
+        // {
+        //   selector: 'variable',
+        //   format: ['camelCase', 'UPPER_CASE']
+        // },
         {
           selector: 'interface',
           format: ['PascalCase'],

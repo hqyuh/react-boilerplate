@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { CustomProviderContext } from '@/context/CustomContext';
 import { useState } from 'react';
 
