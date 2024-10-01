@@ -1,7 +1,8 @@
-import { SideBarLayout } from '@/layouts/SidebarLayout';
 import { Outlet } from 'react-router-dom';
 
-export const MainLayout = () => (
+import { SideBarLayout } from '../SidebarLayout/SidebarLayout';
+
+const MainLayout = () => (
   <>
     <div className='flex h-full w-full'>
       <SideBarLayout />
@@ -13,3 +14,5 @@ export const MainLayout = () => (
     </div>
   </>
 );
+
+export default MainLayout;

@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { createSafeContext } from '@/utils/createSafeContext';
 
 type TCustomContext = {

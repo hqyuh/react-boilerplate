@@ -1,5 +1,6 @@
-import { Menu } from '@/layouts/SidebarLayout/menu';
 import { Blend } from 'lucide-react';
+
+import { Menu } from './menu/Menu';
 
 export const SideBarLayout = () => (
   <div className='h-full w-[280px] bg-slate-50'>

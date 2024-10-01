@@ -1,7 +1,3 @@
-import { MainLayout } from '@/layouts/MainLayout';
-import { DashboardPage } from '@/pages/dashboard';
-import { ErrorPage } from '@/pages/error';
-import { HomePage } from '@/pages/home';
 import { store } from '@/stores/store';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
@@ -9,6 +5,10 @@ import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 import './App.css';
+import MainLayout from './layouts/MainLayout/MainLayout';
+import DashboardPage from './pages/dashboard/Dashboard';
+import ErrorPage from './pages/error/Error';
+import HomePage from './pages/home/Home';
 
 const queryClient = new QueryClient();
 
@@ -20,39 +20,29 @@ function App() {
       errorElement: <ErrorPage />,
       children: [
         {
-          path: 'home',
+          path: 'use-state',
           element: <HomePage />,
           children: [
             {
-              path: 'home1',
-              element: <HomePage />,
-              children: [
-                {
-                  path: 'home12',
-                  element: <HomePage />
-                },
-                {
-                  path: 'home22',
-                  element: <HomePage />
-                }
-              ]
+              path: 'example-1',
+              element: <HomePage />
             },
             {
-              path: 'home2',
+              path: 'example-2',
               element: <HomePage />
             }
           ]
         },
         {
-          path: 'dashboard',
+          path: 'use-effect',
           element: <DashboardPage />,
           children: [
             {
-              path: 'dashboard1',
+              path: 'example-1',
               element: <DashboardPage />
             },
             {
-              path: 'dashboard2',
+              path: 'example-2',
               element: <DashboardPage />
             }
           ]

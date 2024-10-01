@@ -13,7 +13,7 @@ import _omitBy from 'lodash/omitBy';
 import { trackPromise } from 'react-promise-tracker';
 
 export default class HttpService {
-  private instance: AxiosInstance;
+  private readonly instance: AxiosInstance;
 
   constructor(config?: CreateAxiosDefaults, _prefix?: string) {
     const instance = axios.create({ ...axiosConfig, ...config });
@@ -21,17 +21,17 @@ export default class HttpService {
     this.instance = instance;
   }
 
-  private onRequest = async (config: any): Promise<InternalAxiosRequestConfig> => config;
+  private readonly onRequest = async (config: any): Promise<InternalAxiosRequestConfig> => config;
 
-  private onRequestError = (error: AxiosError): Promise<AxiosError> => {
+  private readonly onRequestError = (error: AxiosError): Promise<AxiosError> => {
     console.error(`[request error] [${JSON.stringify(error)}]`);
 
     return Promise.reject(error);
   };
 
-  private onResponse = (response: AxiosResponse) => response;
+  private readonly onResponse = (response: AxiosResponse) => response;
 
-  private onResponseError = (error: AxiosError): Promise<AxiosError> => {
+  private readonly onResponseError = (error: AxiosError): Promise<AxiosError> => {
     const status = error.response?.status;
     // const errorMessage = (error?.toJSON() as any)?.message || 'Error';
 
