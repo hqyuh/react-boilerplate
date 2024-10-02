@@ -2,10 +2,10 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
 import authService from './auth.service';
-import type { ILogin } from './auth.type';
+import type { TLogin } from './auth.type';
 import { EActionAuth } from './auth.type';
 
-const loginAsync = createAsyncThunk(EActionAuth.LOGIN, async (arg: ILogin, { rejectWithValue }) => {
+const loginAsync = createAsyncThunk(EActionAuth.LOGIN, async (arg: TLogin, { rejectWithValue }) => {
   try {
     const response = await authService.login(arg);
 

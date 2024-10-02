@@ -2,7 +2,7 @@ export enum EActionAuth {
   LOGIN = 'login'
 }
 
-export interface ILogin {
+export type TLogin = {
   email: string;
   password: string;
-}
+};

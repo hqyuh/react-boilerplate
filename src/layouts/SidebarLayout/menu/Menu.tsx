@@ -1,48 +1,30 @@
-import { House, LayoutDashboard } from 'lucide-react';
-
 import { MenuItem } from './menu-item/MenuItem';
 
 export type TSidebarSubItem = {
   title: string;
   path: string;
-  icon: JSX.Element;
+  icon?: JSX.Element;
   sub?: TSidebarSubItem[];
 };
 
 const SideBarData: TSidebarSubItem[] = [
   {
-    title: 'UseState',
-    path: '/use-state',
-    icon: <House />,
+    title: 'Home',
+    path: '/home',
     sub: [
       {
-        title: 'Example 1',
-        path: '/example-1',
-        icon: <LayoutDashboard />
+        title: 'H1',
+        path: '/1'
       },
       {
-        title: 'Example 2',
-        path: '/example-2',
-        icon: <LayoutDashboard />
+        title: 'H2',
+        path: '/2'
       }
     ]
   },
   {
-    title: 'UseEffect',
-    path: '/use-effect',
-    icon: <LayoutDashboard />,
-    sub: [
-      {
-        title: 'Example 1',
-        path: '/example-1',
-        icon: <LayoutDashboard />
-      },
-      {
-        title: 'Example 2',
-        path: '/example-2',
-        icon: <LayoutDashboard />
-      }
-    ]
+    title: 'Dashboard',
+    path: '/dashboard'
   }
 ];
 

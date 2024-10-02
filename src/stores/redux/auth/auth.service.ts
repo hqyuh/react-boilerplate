@@ -1,12 +1,12 @@
-import BaseApiService from '../../services/baseApi.service';
-import type { ILogin } from './auth.type';
+import BaseApiService from '../../../services/baseApi.service';
+import type { TLogin } from './auth.type';
 
 class AuthService extends BaseApiService {
   constructor() {
     super();
   }
 
-  async login(data: ILogin): Promise<any> {
+  async login(data: TLogin): Promise<any> {
     return this.httpClient.post<any>('/login', data);
   }
 }
