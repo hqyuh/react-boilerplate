@@ -1,0 +1,27 @@
+{
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.organizeImports": "always",
+    "source.sortMembers": "always",
+    "source.addMissingImports": "always"
+  },
+  "cSpell.words": [
+    "agrs",
+    "clsx",
+    "estree",
+    "hookform",
+    "Lngs",
+    "lucide",
+    "nabla",
+    "Parens",
+    "sonarjs",
+    "tailwindcss",
+    "TFCC",
+    "topbar",
+    "trivago",
+    "tseslint"
+  ],
+  "eslint.useFlatConfig": true,
+  "typescript.tsdk": "node_modules/typescript/lib"
+}
