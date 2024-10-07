@@ -81,7 +81,7 @@ export const MenuItem = ({ item, currIndex = 0, currPath = '' }: TMenuItemProps)
             paddingLeft: `${Number(currIndex) * 20}px`
           }}
         >
-          <div className='flex w-full items-center justify-between'>
+          <div className='flex w-full items-center justify-between px-3'>
             <div className='flex items-center space-x-2'>
               <div className='text-lg'>{item.icon}</div>
               <p className='text-base font-semibold leading-none'>{item.title}</p>
