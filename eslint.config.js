@@ -15,7 +15,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default tseslint.config(
-  { ignores: ['dist', 'vite.config.ts', '**/*.config.js', 'src/components/ui'] },
+  { ignores: ['dist', 'vite.config.ts', '**/*.config.js', 'src/components'] },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended, ...pluginQuery.configs['flat/recommended']],
     files: ['**/*.{ts,tsx}'],

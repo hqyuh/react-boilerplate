@@ -27,14 +27,12 @@ function App() {
   );
 
   return (
-    <main className='h-full w-full'>
-      <Provider store={store}>
-        <QueryClientProvider client={queryClient}>
-          <RouterProvider router={router} />
-          <ReactQueryDevtools initialIsOpen={false} />
-        </QueryClientProvider>
-      </Provider>
-    </main>
+    <Provider store={store}>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        <ReactQueryDevtools initialIsOpen={false} buttonPosition='bottom-left' />
+      </QueryClientProvider>
+    </Provider>
   );
 }
 

@@ -1,4 +1,4 @@
-import { MenuItem } from './menu-item/MenuItem';
+import { MenuItem } from './menu-item/menu-item';
 
 export type TSidebarSubItem = {
   title: string;
