@@ -1,4 +1,4 @@
-import type { TSidebarSubItem } from '@/layouts/SidebarLayout/menu/Menu';
+import type { TSidebarSubItem } from '@/layouts/sidebar/menu/menu';
 import { cn } from '@/lib/utils';
 import { ChevronDown } from 'lucide-react';
 import { useState } from 'react';

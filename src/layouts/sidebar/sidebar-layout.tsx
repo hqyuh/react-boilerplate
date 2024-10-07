@@ -1,4 +1,4 @@
-import { Menu } from '@/layouts/SidebarLayout/menu/Menu';
+import { Menu } from '@/layouts/sidebar/menu/menu';
 import { Blend } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 

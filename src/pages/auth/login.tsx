@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/naming-convention */
 import { useUser } from '@/context/CustomContext';
 
 export const Login = () => {

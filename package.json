@@ -9,7 +9,7 @@
     "optimize": "vite optimize",
     "preview": "vite preview",
     "lint": "eslint .",
-    "lint:fix": "eslint --fix './**/*.{ts,tsx}'",
+    "lint:fix": "eslint --fix \"src/**/*.{ts,tsx}\"",
     "prettier": "prettier --check \"src/**/(*.tsx|*.ts|*.css|*.scss)\"",
     "prettier:fix": "prettier --write \"src/**/(*.tsx|*.ts|*.css|*.scss)\""
   },

@@ -2,7 +2,7 @@ import type { TFCC } from '@/@types/common.type';
 import { TailwindIndicator } from '@/components/tailwind-indicator';
 import Header from '@/layouts/root/header';
 
-import { SideBarLayout } from '../SidebarLayout/sidebar-layout';
+import { SideBarLayout } from '../sidebar/sidebar-layout';
 
 const RootLayout: TFCC = ({ children }) => (
   <div className='flex h-full w-full overflow-hidden'>
