@@ -9,11 +9,27 @@ import type {
   InternalAxiosRequestConfig
 } from 'axios';
 import axios from 'axios';
+import Cookie from 'js-cookie';
 import _omitBy from 'lodash/omitBy';
 import { trackPromise } from 'react-promise-tracker';
 
+type TFailedRequests = {
+  resolve: (value: AxiosResponse) => void;
+  reject: (value: AxiosError) => void;
+  config: AxiosRequestConfig;
+  error: AxiosError;
+};
+
+// const MAXIMUM_RETRY_UN_AUTHENTICATION = 5;
+
 export default class HttpService {
   private readonly instance: AxiosInstance;
+
+  private readonly failedRequests: TFailedRequests[] = [];
+
+  private readonly isTokenRefreshing: boolean = false;
+
+  private readonly refreshTokenCount = new Map();
 
   constructor(config?: CreateAxiosDefaults, _prefix?: string) {
     const instance = axios.create({ ...axiosConfig, ...config });
@@ -21,7 +37,20 @@ export default class HttpService {
     this.instance = instance;
   }
 
-  private readonly onRequest = async (config: any): Promise<InternalAxiosRequestConfig> => config;
+  private readonly removeTokenCookie = () => {
+    Cookie.remove('access_token');
+    Cookie.remove('refresh_token');
+  };
+
+  private readonly onRequest = async (config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> => {
+    const token = Cookie.get('access_token');
+
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
+
+    return config;
+  };
 
   private readonly onRequestError = (error: AxiosError): Promise<AxiosError> => {
     console.error(`[request error] [${JSON.stringify(error)}]`);
@@ -29,7 +58,18 @@ export default class HttpService {
     return Promise.reject(error);
   };
 
-  private readonly onResponse = (response: AxiosResponse) => response;
+  private readonly onResponse = (response: AxiosResponse) => {
+    const { url } = response.config;
+    const result = response.data;
+
+    const isExistedRefreshTokenCount = this.refreshTokenCount.has(url);
+
+    if (isExistedRefreshTokenCount) {
+      this.refreshTokenCount.set(url, 0);
+    }
+
+    return result;
+  };
 
   private readonly onResponseError = (error: AxiosError): Promise<AxiosError> => {
     const status = error.response?.status;
