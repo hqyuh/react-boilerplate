@@ -4,6 +4,10 @@ import Header from '@/layouts/root/header';
 
 import { SideBarLayout } from '../sidebar/sidebar-layout';
 
+type ITest = {
+  name: string;
+};
+
 const RootLayout: TFCC = ({ children }) => (
   <div className='flex h-full w-full overflow-hidden'>
     <SideBarLayout />
