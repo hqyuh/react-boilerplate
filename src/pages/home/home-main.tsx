@@ -1,3 +1,5 @@
+import authService from '@/stores/redux/auth/auth.service';
+import { useEffect } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';
 
@@ -13,6 +15,18 @@ const HomeMain = () => {
       TextField: ''
     }
   });
+
+  useEffect(() => {
+    (async () => {
+      await Promise.all([
+        authService.login1(),
+        authService.login1(),
+        authService.login1(),
+        authService.login1(),
+        authService.login1()
+      ]);
+    })();
+  }, []);
 
   const onSubmit: SubmitHandler<TFormInputs> = (data) => console.log(data);
 

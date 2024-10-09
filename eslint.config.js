@@ -85,12 +85,22 @@ export default tseslint.config(
       'unicorn/prefer-node-protocol': 'off',
       //** plugin:typescript-eslint  */
       'no-unused-vars': 'off',
-      '@typescript-eslint/no-unused-vars': ['error', { argsIgnorePattern: '^_', vars: 'all', args: 'after-used' }],
+      '@typescript-eslint/no-unused-vars': [
+        'error',
+        {
+          args: 'all',
+          argsIgnorePattern: '^_',
+          caughtErrors: 'all',
+          caughtErrorsIgnorePattern: '^_',
+          destructuredArrayIgnorePattern: '^_',
+          varsIgnorePattern: '^_',
+          ignoreRestSiblings: true
+        }
+      ],
       '@typescript-eslint/adjacent-overload-signatures': 'error',
       '@typescript-eslint/array-type': ['error', { default: 'array-simple' }],
       '@typescript-eslint/no-restricted-types': [
         'error',
-
         {
           types: {
             Object: {
