@@ -1,4 +1,4 @@
-import authService from '@/stores/redux/auth/auth.service';
+import authService from '@/services/auth.service';
 import { useEffect } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { Controller, useForm } from 'react-hook-form';

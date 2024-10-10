@@ -139,13 +139,13 @@ export default tseslint.config(
               message: 'Use Record<K, V> instead',
 
               fixWith: 'Record<K, V>'
-            },
-
-            object: {
-              message: 'Use Record<K, V> instead',
-
-              fixWith: 'Record<K, V>'
             }
+
+            // object: {
+            //   message: 'Use Record<K, V> instead',
+
+            //   fixWith: 'Record<K, V>'
+            // }
           }
         }
       ],

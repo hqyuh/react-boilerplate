@@ -23,7 +23,8 @@
     "TFCC",
     "topbar",
     "trivago",
-    "tseslint"
+    "tseslint",
+    "zustand"
   ],
   "eslint.useFlatConfig": true,
   "typescript.tsdk": "node_modules/typescript/lib"

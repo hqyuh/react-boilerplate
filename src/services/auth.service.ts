@@ -1,6 +1,6 @@
 // import Cookies from 'js-cookie';
-import BaseApiService from '../../../services/baseApi.service';
-import type { TLogin } from './auth.type';
+import type { TLogin } from '../stores/redux/auth/auth.type';
+import BaseApiService from './baseApi.service';
 
 class AuthService extends BaseApiService {
   constructor() {

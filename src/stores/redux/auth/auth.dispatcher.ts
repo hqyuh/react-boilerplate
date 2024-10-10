@@ -1,7 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { AxiosError } from 'axios';
 
-import authService from './auth.service';
+import authService from '../../../services/auth.service';
 import type { TLogin } from './auth.type';
 import { EActionAuth } from './auth.type';
 
