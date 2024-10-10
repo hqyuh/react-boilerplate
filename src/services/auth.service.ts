@@ -12,7 +12,7 @@ class AuthService extends BaseApiService {
   }
 
   async login1(): Promise<any> {
-    return this.httpClient.get<any>('/todos/2');
+    return this.httpClient.get<any>('/user/2');
   }
 }
 

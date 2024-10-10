@@ -18,13 +18,7 @@ const HomeMain = () => {
 
   useEffect(() => {
     (async () => {
-      await Promise.all([
-        authService.login1(),
-        authService.login1(),
-        authService.login1(),
-        authService.login1(),
-        authService.login1()
-      ]);
+      await Promise.all([authService.login1(), authService.login1(), authService.login1()]);
     })();
   }, []);
 

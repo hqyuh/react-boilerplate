@@ -24,6 +24,13 @@ type TFailedRequests = {
 
 const MAXIMUM_RETRY_UN_AUTHENTICATION = 5;
 
+type TRefreshToKenResponse = {
+  data: {
+    accessToken?: string;
+    refreshToken?: string;
+  };
+};
+
 export type TApiResponse<T> = {
   code: number;
 
@@ -117,15 +124,14 @@ export default class HttpService {
 
     try {
       const refreshToken = Cookie.get('refresh_token') ?? '';
-      const urlEndpoint = `${axiosConfig.baseURL}/api/token/refresh-token`;
+      const urlEndpoint = `${axiosConfig.baseURL}/auth/user/refresh-token`;
 
       const response = await axios.post(urlEndpoint, { refreshToken });
 
-      const result = response.data;
-      const user = result?.user;
+      const result: TRefreshToKenResponse = response.data;
 
-      cookiesService.set('access_token', user?.accessToken, { path: '/' });
-      cookiesService.set('refresh_token', user?.refreshToken, { path: '/' });
+      cookiesService.set('access_token', result.data.accessToken, { path: '/' });
+      cookiesService.set('refresh_token', result.data.refreshToken, { path: '/' });
 
       this.failedRequests.forEach(({ resolve, reject, config }) => {
         this.instance(config)
@@ -134,8 +140,8 @@ export default class HttpService {
       });
     } catch (_error: unknown) {
       this.failedRequests.forEach(({ reject, error: errorFailedRequest }) => reject(errorFailedRequest));
-      this.removeTokenCookie();
-      window.location.href = `${22}`;
+      // this.removeTokenCookie();
+      // window.location.href = `/dashboard`;
 
       return Promise.reject(error);
     } finally {
@@ -157,25 +163,24 @@ export default class HttpService {
     return axiosInstance;
   }
 
-  // eslint-disable-next-line @typescript-eslint/naming-convention
-  private _trackPromise<T, Fn extends (...agrs: Parameters<Fn>) => Promise<T>>(asyncFn: Fn, ...args: Parameters<Fn>) {
+  private trackPromise<T, F extends (...agrs: Parameters<F>) => Promise<T>>(asyncFn: F, ...args: Parameters<F>) {
     return trackPromise(asyncFn(...args));
   }
 
   public async get<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    return this._trackPromise(this.instance.get, url, config);
+    return this.trackPromise(this.instance.get, url, config);
   }
 
   public async post<T>(url: string, data: any, config?: AxiosRequestConfig): Promise<T> {
-    return this._trackPromise(this.instance.post, url, data, config);
+    return this.trackPromise(this.instance.post, url, data, config);
   }
 
   public async patch<T>(url: string, data: any, config?: AxiosRequestConfig): Promise<T> {
-    return this._trackPromise(this.instance.patch, url, data, config);
+    return this.trackPromise(this.instance.patch, url, data, config);
   }
 
   public async delete<T>(url: string, config?: AxiosRequestConfig): Promise<T> {
-    return this._trackPromise(this.instance.delete, url, config);
+    return this.trackPromise(this.instance.delete, url, config);
   }
 
   public setHttpConfigs(config?: Partial<AxiosRequestConfig>) {

@@ -6,16 +6,10 @@ class CookieService {
     Cookies.set(name, originalValue, options);
   }
 
-  public get<T>(key: string): T | null {
+  public get<T>(key: string): T {
     const cookieValue = Cookies.get(key);
 
-    if (!cookieValue) {
-      return null;
-    }
-
-    const item = JSON.parse(cookieValue);
-
-    return (item === 'object' ? item : cookieValue) as T;
+    return cookieValue as T;
   }
 
   public remove(key: string) {
