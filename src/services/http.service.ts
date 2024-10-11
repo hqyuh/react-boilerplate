@@ -60,10 +60,10 @@ export default class HttpService {
     this.instance = instance;
   }
 
-  private readonly removeTokenCookie = () => {
-    cookiesService.remove('access_token');
-    cookiesService.remove('refresh_token');
-  };
+  // private readonly removeTokenCookie = () => {
+  //   cookiesService.remove('access_token');
+  //   cookiesService.remove('refresh_token');
+  // };
 
   private readonly onRequest = async (config: InternalAxiosRequestConfig): Promise<InternalAxiosRequestConfig> => {
     const token = cookiesService.get('access_token');
@@ -126,7 +126,11 @@ export default class HttpService {
       const refreshToken = Cookie.get('refresh_token') ?? '';
       const urlEndpoint = `${axiosConfig.baseURL}/auth/user/refresh-token`;
 
-      const response = await axios.post(urlEndpoint, { refreshToken });
+      const response = await axios.post(urlEndpoint, null, {
+        headers: {
+          Authorization: `Bearer ${refreshToken}`
+        }
+      });
 
       const result: TRefreshToKenResponse = response.data;
 
