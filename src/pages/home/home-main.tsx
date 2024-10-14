@@ -1,69 +1,38 @@
-import authService from '@/services/auth.service';
-import { useEffect } from 'react';
+import { InputField } from '@/components/forms/controlled/input';
+import { Button } from '@/components/ui/button';
+import { Form } from '@/components/ui/form';
+import type { TInfoFormValues } from '@/schemas/input.schema';
+import { InfoFormSchema } from '@/schemas/input.schema';
+import { zodResolver } from '@hookform/resolvers/zod';
 import type { SubmitHandler } from 'react-hook-form';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 
 type TFormInputs = {
-  TextField: string;
-  MyCheckbox: boolean;
+  username: string;
 };
 
 const HomeMain = () => {
-  const { handleSubmit, control } = useForm<TFormInputs>({
+  const form = useForm<TInfoFormValues>({
+    resolver: zodResolver(InfoFormSchema),
     defaultValues: {
-      MyCheckbox: false,
-      TextField: ''
-    }
+      username: ''
+    },
+    reValidateMode: 'onChange'
   });
 
-  useEffect(() => {
-    (async () => {
-      await Promise.all([
-        authService.login1(),
-        authService.login1(),
-        authService.login1(),
-        authService.login1(),
-        authService.login1()
-      ]);
-    })();
-  }, []);
-
-  const onSubmit: SubmitHandler<TFormInputs> = (data) => console.log(data);
+  const onSubmit: SubmitHandler<TFormInputs> = (data: TFormInputs) => console.log(data);
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)}>
-      <div>
-        <label>
-          <Controller
-            name='MyCheckbox'
-            control={control}
-            rules={{ required: true }}
-            render={({ field }) => {
-              console.log('re-render checkbox');
-
-              return <input type='checkbox' checked={field.value} onChange={(e) => field.onChange(e.target.checked)} />;
-            }}
-          />
-          My Checkbox
-        </label>
-      </div>
-      <div>
-        <label>
-          Text Field:
-          <Controller
-            name='TextField'
-            control={control}
-            render={({ field }) => {
-              console.log('re-render text');
-              console.log('field => ', field.value);
-
-              return <input type='text' {...field} value={field.value} />;
-            }}
-          />
-        </label>
-      </div>
-      <input type='submit' />
-    </form>
+    <>
+      <Form {...form}>
+        <div className='p-6'>
+          <form className='w-80 space-y-8' onSubmit={form.handleSubmit(onSubmit)}>
+            <InputField control={form.control} name='username' label='He' description='Des' />
+            <Button type='submit'>Submit</Button>
+          </form>
+        </div>
+      </Form>
+    </>
   );
 };
 
