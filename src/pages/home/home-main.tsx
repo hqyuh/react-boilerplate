@@ -20,6 +20,12 @@ const HomeMain = () => {
     reValidateMode: 'onChange'
   });
 
+  useEffect(() => {
+    (async () => {
+      await Promise.all([authService.login1(), authService.login1(), authService.login1()]);
+    })();
+  }, []);
+
   const onSubmit: SubmitHandler<TFormInputs> = (data: TFormInputs) => console.log(data);
 
   return (
