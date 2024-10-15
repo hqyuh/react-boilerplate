@@ -2,9 +2,11 @@ import AppProvider from '@/providers/AppProvider';
 import createRouter from '@/routes/createRouter';
 import route from '@/routes/routes';
 import { store } from '@/stores/redux/store';
+import '@/translation/i18n';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import { lazy } from 'react';
+import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
@@ -29,8 +31,10 @@ function App() {
   return (
     <Provider store={store}>
       <QueryClientProvider client={queryClient}>
-        <RouterProvider router={router} />
-        <ReactQueryDevtools initialIsOpen={false} buttonPosition='bottom-left' />
+        <HelmetProvider>
+          <RouterProvider router={router} />
+          <ReactQueryDevtools initialIsOpen={false} buttonPosition='bottom-left' />
+        </HelmetProvider>
       </QueryClientProvider>
     </Provider>
   );

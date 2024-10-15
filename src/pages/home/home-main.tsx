@@ -1,4 +1,5 @@
 import { InputField } from '@/components/forms/controlled/input';
+import { Metadata } from '@/components/metadata/metadata';
 import { Button } from '@/components/ui/button';
 import { Form } from '@/components/ui/form';
 import type { TInfoFormValues } from '@/schemas/input.schema';
@@ -32,6 +33,7 @@ const HomeMain = () => {
 
   return (
     <>
+      <Metadata title='Home main' />
       <Form {...form}>
         <div className='p-6'>
           <form className='w-80 space-y-8' onSubmit={form.handleSubmit(onSubmit)}>
