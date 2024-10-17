@@ -1,4 +1,4 @@
-import CustomProvider from '@/providers/CustomProvider';
+import CustomProvider from '@/providers/custom-provider';
 
 import { Login } from './login';
 import { User } from './user';

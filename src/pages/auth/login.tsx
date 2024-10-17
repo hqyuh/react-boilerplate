@@ -1,4 +1,4 @@
-import { useUser } from '@/context/CustomContext';
+import { useUser } from '@/context/custom-context';
 
 export const Login = () => {
   const { handleSetUsername } = useUser();

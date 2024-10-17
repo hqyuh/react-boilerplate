@@ -30,9 +30,10 @@ class ErrorBoundary extends Component<TProps, TState> {
           <div className='mb-10 text-xl text-black'>Oops, something wrong.</div>
           <button
             className='flex h-10 items-center justify-center rounded bg-zinc-900 px-6 text-sm text-white'
-            onClick={() => window.location.reload()}
+            // onClick={() => window.location.reload()}
+            onClick={() => (window.location.href = '/main')}
           >
-            Click here to reset!
+            Click here to return main!
           </button>
         </div>
       );

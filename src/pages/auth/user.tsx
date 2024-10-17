@@ -1,4 +1,4 @@
-import { useUser } from '@/context/CustomContext';
+import { useUser } from '@/context/custom-context';
 
 export const User = () => {
   const { username } = useUser();

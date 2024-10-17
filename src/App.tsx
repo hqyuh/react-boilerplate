@@ -1,17 +1,16 @@
-import AppProvider from '@/providers/AppProvider';
-import Protected from '@/routes/protectedRoute';
-import PublicRoute from '@/routes/publicRoute';
 import { store } from '@/stores/redux/store';
 import '@/translation/i18n';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
-import { lazy, Suspense } from 'react';
+import { lazy } from 'react';
 import { HelmetProvider } from 'react-helmet-async';
 import { Provider } from 'react-redux';
 import { createBrowserRouter, Navigate, RouterProvider } from 'react-router-dom';
-import TopBarProgress from 'react-topbar-progress-indicator';
 
 import './App.css';
+import AppProvider from './providers/app-provider';
+import Protected from './routes/protected-route';
+import PublicRoute from './routes/public-route';
 
 const ErrorPage = lazy(() => import('@/pages/error/error'));
 const LoginPage = lazy(() => import('@/pages/auth/auth'));
@@ -30,61 +29,27 @@ function App() {
       element: <Navigate to='/main' replace />
     },
     {
-      path: 'login',
-      element: (
-        <PublicRoute>
-          <Suspense fallback={<TopBarProgress />}>
-            <LoginPage />
-          </Suspense>
-        </PublicRoute>
-      )
-    },
-    {
-      path: 'no-permission',
-      element: (
-        <Suspense fallback={<TopBarProgress />}>
-          <NoPermission />
-        </Suspense>
-      )
-    },
-    {
       path: '/',
       element: (
         <Protected role={['admin', 'user']}>
           <AppProvider />
         </Protected>
       ),
-      errorElement: (
-        <Suspense fallback={<TopBarProgress />}>
-          <ErrorPage />
-        </Suspense>
-      ),
+      errorElement: <ErrorPage />,
       children: [
         {
           children: [
             {
               path: 'main',
-              element: (
-                <Suspense fallback={<TopBarProgress />}>
-                  <HomeMainPage />
-                </Suspense>
-              )
+              element: <HomeMainPage />
             },
             {
               path: 'home',
-              element: (
-                <Suspense fallback={<TopBarProgress />}>
-                  <HomePage />
-                </Suspense>
-              ),
+              element: <HomePage />,
               children: [
                 {
                   path: ':id',
-                  element: (
-                    <Suspense fallback={<TopBarProgress />}>
-                      <HomeChildPage />
-                    </Suspense>
-                  )
+                  element: <HomeChildPage />
                 }
               ]
             }
@@ -95,15 +60,27 @@ function App() {
           children: [
             {
               path: 'dashboard',
-              element: (
-                <Suspense fallback={<TopBarProgress />}>
-                  <DashboardPage />
-                </Suspense>
-              )
+              element: <DashboardPage />
             }
           ]
         }
       ]
+    },
+    {
+      path: 'login',
+      element: (
+        <PublicRoute>
+          <LoginPage />
+        </PublicRoute>
+      )
+    },
+    {
+      path: 'no-permission',
+      element: <NoPermission />
+    },
+    {
+      path: '*',
+      element: <ErrorPage />
     }
   ]);
 

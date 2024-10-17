@@ -1,4 +1,4 @@
-import { CustomProviderContext } from '@/context/CustomContext';
+import { CustomProviderContext } from '@/context/custom-context';
 import { useState } from 'react';
 
 type TCustomProviderType = { children: React.ReactNode };
