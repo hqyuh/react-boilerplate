@@ -13,21 +13,25 @@ const route: TRouter[] = [
   },
   {
     path: 'main',
-    element: HomeMainPage
+    element: HomeMainPage,
+    role: ['admin']
   },
   {
     path: 'home',
     element: HomePage,
+    role: ['admin', 'user'],
     children: [
       {
         path: ':id',
-        element: HomeChildPage
+        element: HomeChildPage,
+        role: ['admin', 'user']
       }
     ]
   },
   {
     path: 'dashboard',
-    element: DashboardPage
+    element: DashboardPage,
+    role: ['admin']
   }
 ];
 

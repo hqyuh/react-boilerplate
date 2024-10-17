@@ -1,3 +1,4 @@
+import ProtectedRoute from '@/routes/protectedRoute';
 import { Suspense } from 'react';
 import { Navigate, type IndexRouteObject, type RouteObject } from 'react-router-dom';
 import TopBarProgress from 'react-topbar-progress-indicator';
@@ -9,6 +10,7 @@ export type TRouter = {
   element?: React.LazyExoticComponent<(props: TA) => JSX.Element>;
   errorElement?: React.LazyExoticComponent<(props: TA) => JSX.Element>;
   redirectTo?: string;
+  role?: string[];
   children?: TRouter[];
 };
 
@@ -29,11 +31,19 @@ const createRouter = (routes: TRouter[]) =>
     }
 
     if (item.element) {
-      itemResult.element = (
+      const ElementComponent = (
         <Suspense fallback={<TopBarProgress />}>
-          <item.element />
+          {item.role ? (
+            <ProtectedRoute role={item.role ?? []}>
+              <item.element />
+            </ProtectedRoute>
+          ) : (
+            <item.element />
+          )}
         </Suspense>
       );
+
+      itemResult.element = ElementComponent;
     }
 
     if (item.errorElement) {
@@ -46,6 +56,8 @@ const createRouter = (routes: TRouter[]) =>
 
     if (item.redirectTo) {
       itemResult.element = <Navigate to={item.redirectTo} replace />;
+
+      return itemResult;
     }
 
     if (item.children) {

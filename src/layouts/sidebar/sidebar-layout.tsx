@@ -5,7 +5,7 @@ import { useNavigate } from 'react-router-dom';
 export const SideBarLayout = () => {
   const navigate = useNavigate();
 
-  const handleRedirect = () => navigate('/');
+  const handleRedirect = () => navigate('/main');
 
   return (
     <div className='h-full w-[300px] bg-slate-50'>
