@@ -114,7 +114,7 @@ export default class HttpService {
     const existedRefreshTokenCount = this.refreshTokenCount.get(url) ?? 0;
 
     if (existedRefreshTokenCount >= MAXIMUM_RETRY_UN_AUTHENTICATION) {
-      window.location.href = '/login';
+      window.location.href = '/auth/login';
 
       return Promise.reject(new Error('Maximum retry attempts exceeded. Redirecting to login.'));
     }

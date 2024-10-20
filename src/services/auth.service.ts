@@ -8,7 +8,7 @@ class AuthService extends BaseApiService {
   }
 
   async login(data: TLogin): Promise<any> {
-    return this.httpClient.post<any>('/login', data);
+    return this.httpClient.post<any>('/auth/login', data);
   }
 
   async login1(): Promise<any> {

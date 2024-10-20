@@ -1,7 +1,7 @@
-import CustomProvider from '@/providers/custom-provider';
+import HeheProvider from '@/providers/hehe-provider';
+import { User } from 'lucide-react';
 
 import { Login } from './login';
-import { User } from './user';
 
 export default function Auth() {
   // const dispatch = useAppDispatch();
@@ -19,10 +19,10 @@ export default function Auth() {
       <Button className='bg-sky-700 px-4 py-2 text-white hover:bg-sky-800 sm:px-8 sm:py-3'>Click me</Button>
       <div className='p-4 pt-2'>22</div> */}
 
-      <CustomProvider>
+      <HeheProvider>
         <User />
         <Login />
-      </CustomProvider>
+      </HeheProvider>
       {/* <MyComponent /> */}
     </>
   );

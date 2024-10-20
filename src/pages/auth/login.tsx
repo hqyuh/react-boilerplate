@@ -1,7 +1,7 @@
-import { useUser } from '@/context/custom-context';
+import { useHeheContext } from '@/context/hehe-context';
 
 export const Login = () => {
-  const { handleSetUsername } = useUser();
+  const { handleSetUsername } = useHeheContext();
 
   return (
     <div>

@@ -1,5 +1,6 @@
+import { useAuthContext } from '@/context/auth-context';
 import { Suspense } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 import TopBarProgress from 'react-topbar-progress-indicator';
 
 type TPublic = {
@@ -8,12 +9,11 @@ type TPublic = {
 };
 
 export default function PublicRoute({ children, redirect = '/main' }: TPublic) {
-  const user = { role: 'user' };
-  // const user: any = null;
+  const data = useAuthContext();
 
-  if (user) {
+  if (data.user) {
     return <Navigate to={redirect} replace />;
   }
 
-  return <Suspense fallback={<TopBarProgress />}>{children || <Outlet />}</Suspense>;
+  return <Suspense fallback={<TopBarProgress />}>{children}</Suspense>;
 }

@@ -1,7 +1,7 @@
-import { useUser } from '@/context/custom-context';
+import { useHeheContext } from '@/context/hehe-context';
 
 export const User = () => {
-  const { username } = useUser();
+  const { username } = useHeheContext();
 
   return <h2 className='font-bold'>User: {username}</h2>;
 };

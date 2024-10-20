@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-export function MyComponent() {
+const MyComponent = () => {
   const [counter, setCounter] = useState(42);
   const [clicked, setClicked] = useState(0);
 
@@ -25,4 +25,6 @@ export function MyComponent() {
       <div>Clicked: {clicked}</div>
     </div>
   );
-}
+};
+
+export default MyComponent;
