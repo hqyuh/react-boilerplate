@@ -5,6 +5,7 @@ import { Form } from '@/components/ui/form';
 import type { TInfoFormValues } from '@/schemas/input.schema';
 import { InfoFormSchema } from '@/schemas/input.schema';
 import authService from '@/services/auth.service';
+import { useWorker } from '@/worker/useWorker';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
@@ -22,6 +23,9 @@ const HomeMain = () => {
     },
     reValidateMode: 'onChange'
   });
+
+  const { users, callWorker } = useWorker();
+  console.log('🐔 =>  users:', users);
 
   useEffect(() => {
     (async () => {
@@ -42,6 +46,10 @@ const HomeMain = () => {
           </form>
         </div>
       </Form>
+
+      <Button type='button' onClick={() => callWorker({ name: 'h' })}>
+        Call Worker
+      </Button>
     </>
   );
 };
