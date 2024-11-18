@@ -103,7 +103,7 @@ function App() {
           <AuthProvider>
             <RouterProvider router={router} />
           </AuthProvider>
-          <ReactQueryDevtools initialIsOpen={false} buttonPosition='bottom-left' />
+          <ReactQueryDevtools initialIsOpen={false} />
         </HelmetProvider>
       </QueryClientProvider>
     </Provider>
