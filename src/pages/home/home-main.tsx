@@ -5,6 +5,7 @@ import { Form } from '@/components/ui/form';
 import type { TInfoFormValues } from '@/schemas/input.schema';
 import { InfoFormSchema } from '@/schemas/input.schema';
 import authService from '@/services/auth.service';
+import { fetchUsers } from '@/worker/data';
 import { useWorker } from '@/worker/useWorker';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useEffect } from 'react';
@@ -35,6 +36,11 @@ const HomeMain = () => {
 
   const onSubmit: SubmitHandler<TFormInputs> = (data: TFormInputs) => console.log(data);
 
+  const handleW = async () => {
+    const res = await fetchUsers();
+    console.log('🐔 =>  res:', res);
+  };
+
   return (
     <>
       <Metadata title='Home main' />
@@ -47,9 +53,14 @@ const HomeMain = () => {
         </div>
       </Form>
 
-      <Button type='button' onClick={() => callWorker({ name: 'h' })}>
-        Call Worker
-      </Button>
+      <div className='flex w-80 justify-between'>
+        <Button type='button' onClick={() => callWorker({ name: 'h' })}>
+          Call with Worker
+        </Button>
+        <Button type='button' onClick={handleW}>
+          Call without Worker
+        </Button>
+      </div>
     </>
   );
 };

@@ -23,11 +23,11 @@ const data = {
       items: [
         {
           title: 'Child 1',
-          url: '/home/1'
+          url: '/home/child-1'
         },
         {
           title: 'Child 2',
-          url: '/home/2'
+          url: '/home/child-2'
         }
       ]
     },
@@ -60,7 +60,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   <Command className='size-4' />
                 </div>
                 <div className='grid flex-1 text-left text-sm leading-tight'>
-                  <span className='truncate font-semibold'>Acme Inc</span>
+                  <span className='truncate text-xl font-semibold'>X</span>
                 </div>
               </a>
             </SidebarMenuButton>
