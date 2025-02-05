@@ -35,6 +35,11 @@ const data = {
       title: 'Dashboard',
       url: '/dashboard',
       icon: Bot
+    },
+    {
+      title: 'Kanban Board',
+      url: '/kanban-board',
+      icon: Bot
     }
   ],
   user: {

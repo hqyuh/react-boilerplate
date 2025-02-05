@@ -21,6 +21,7 @@ const LoginPage = lz(() => import('@/pages/auth/auth'));
 const HomePage = lz(() => import('@/pages/home/home'));
 const HomeChildPage = lz(() => import('@/pages/home/home-child'));
 const DashboardPage = lz(() => import('@/pages/dashboard/dashboard'));
+const KanbanBoardPage = lz(() => import('@/pages/kanban-board/kanban-board'));
 const HomeMainPage = lz(() => import('@/pages/home/home-main'));
 const NoPermission = lz(() => import('@/pages/no-permission/no-permission'));
 const HehePage = lz(() => import('@/pages/auth/hehe'));
@@ -62,6 +63,10 @@ function App() {
             {
               path: 'dashboard',
               element: <DashboardPage />
+            },
+            {
+              path: 'kanban-board',
+              element: <KanbanBoardPage />
             }
           ]
         }
