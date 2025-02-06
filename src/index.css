@@ -94,18 +94,39 @@ body,
 }
 
 @layer base {
-  /* width */
+  /* Vertical Scrollbar */
   ::-webkit-scrollbar {
-    @apply w-2;
+    @apply h-2 w-2;
   }
 
-  /* Track */
   ::-webkit-scrollbar-track {
     @apply bg-inherit;
   }
 
-  /* Handle */
   ::-webkit-scrollbar-thumb {
     @apply rounded-xl bg-slate-500;
+  }
+
+  /* Horizontal Scrollbar */
+  ::-webkit-scrollbar {
+    @apply h-2 w-2;
+  }
+
+  ::-webkit-scrollbar-track {
+    @apply bg-inherit;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    @apply rounded-xl bg-slate-500;
+  }
+
+  /* For Firefox */
+  * {
+    scrollbar-width: thin;
+    scrollbar-color: #717880 transparent;
+  }
+
+  ::-webkit-scrollbar-corner {
+    @apply bg-gray-200;
   }
 }
