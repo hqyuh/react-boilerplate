@@ -8,10 +8,12 @@ export type TUser = {
   commentCount: number;
 };
 
+const numberOfUsers = 500_000;
+
 export function fetchUsers() {
   const users: TUser[] = [];
 
-  for (let i = 0; i < 25000; i++) {
+  for (let i = 0; i < numberOfUsers; i++) {
     const id = i + 1;
     const name = faker.person.fullName();
     const email = faker.internet.email();
