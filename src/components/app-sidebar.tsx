@@ -11,7 +11,7 @@ import {
 } from '@/components/ui/sidebar';
 import { Bot, Command, SquareTerminal } from 'lucide-react';
 import * as React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router';
 
 const data = {
   navMain: [

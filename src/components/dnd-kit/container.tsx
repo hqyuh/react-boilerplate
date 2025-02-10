@@ -178,7 +178,7 @@ function Container() {
   }
 
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='mb-4 flex flex-col gap-4'>
       <button
         className='mt-2 flex h-[60px] w-[350px] cursor-pointer items-center justify-start gap-2 rounded-lg border-2 pl-3 ring-slate-300 hover:ring-2'
         onClick={() => createNewColumn()}

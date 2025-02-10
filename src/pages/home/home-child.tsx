@@ -1,5 +1,5 @@
 import { Metadata } from '@/components/metadata/metadata';
-import { useParams } from 'react-router-dom';
+import { useParams } from 'react-router';
 
 const HomeChildPage = () => {
   const { id } = useParams();

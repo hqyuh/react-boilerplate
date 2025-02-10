@@ -1,4 +1,4 @@
-import { Outlet } from 'react-router-dom';
+import { Outlet } from 'react-router';
 
 const HomePage = () => (
   <div className='flex h-full w-full items-center justify-center'>

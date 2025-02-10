@@ -11,7 +11,7 @@ import {
   SidebarMenuSubItem
 } from '@/components/ui/sidebar';
 import { ChevronRight, type LucideIcon } from 'lucide-react';
-import { NavLink } from 'react-router-dom';
+import { NavLink } from 'react-router';
 
 export function NavMain({
   items
