@@ -1,6 +1,6 @@
 import { useAuthContext } from '@/context/auth-context';
 import { Suspense } from 'react';
-import { Navigate, Outlet } from 'react-router-dom';
+import { Navigate, Outlet } from 'react-router';
 import TopBarProgress from 'react-topbar-progress-indicator';
 
 type TProtectedRouteProps = {
