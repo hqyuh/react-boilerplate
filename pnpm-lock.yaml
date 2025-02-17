@@ -71,6 +71,9 @@ importers:
       i18next-browser-languagedetector:
         specifier: ^8.0.0
         version: 8.0.0
+      immer:
+        specifier: ^10.1.1
+        version: 10.1.1
       js-cookie:
         specifier: ^3.0.5
         version: 3.0.5
