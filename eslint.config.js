@@ -15,7 +15,17 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 export default tseslint.config(
-  { ignores: ['dist', 'vite.config.ts', '**/*.config.js', 'src/components'] },
+  {
+    ignores: [
+      'dist',
+      'vite.config.ts',
+      '**/*.config.js',
+      'src/components',
+      'node_modules',
+      '.lintstagedrc.json',
+      'src/routeTree.gen.ts'
+    ]
+  },
   {
     extends: [js.configs.recommended, ...tseslint.configs.recommended, ...pluginQuery.configs['flat/recommended']],
     files: ['**/*.{ts,tsx}'],
@@ -375,6 +385,12 @@ export default tseslint.config(
       'use-isnan': 'error',
       'valid-typeof': 'off',
       'space-before-function-paren': 'off'
+    }
+  },
+  {
+    files: ['src/router.tsx', 'src/routes/**/*.tsx'],
+    rules: {
+      'react-refresh/only-export-components': 'off'
     }
   }
 );

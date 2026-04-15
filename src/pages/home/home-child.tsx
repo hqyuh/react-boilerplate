@@ -1,8 +1,8 @@
 import { Metadata } from '@/components/metadata/metadata';
-import { useParams } from 'react-router';
+import { useParams } from '@tanstack/react-router';
 
 const HomeChildPage = () => {
-  const { id } = useParams();
+  const { id } = useParams({ strict: false });
 
   return (
     <>

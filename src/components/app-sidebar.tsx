@@ -9,9 +9,9 @@ import {
   SidebarMenuButton,
   SidebarMenuItem
 } from '@/components/ui/sidebar';
+import { useNavigate } from '@tanstack/react-router';
 import { Bot, Command, SquareTerminal } from 'lucide-react';
 import * as React from 'react';
-import { useNavigate } from 'react-router';
 
 const data = {
   navMain: [
@@ -52,7 +52,7 @@ const data = {
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   const navigate = useNavigate();
 
-  const handleRedirect = () => navigate('/main');
+  const handleRedirect = () => navigate({ to: '/main' });
 
   return (
     <Sidebar variant='inset' {...props}>
@@ -61,7 +61,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
           <SidebarMenuItem>
             <SidebarMenuButton size='lg' asChild>
               <a onClick={handleRedirect}>
-                <div className='flex aspect-square size-8 items-center justify-center rounded-lg bg-sidebar-primary text-sidebar-primary-foreground'>
+                <div className='bg-sidebar-primary text-sidebar-primary-foreground flex aspect-square size-8 items-center justify-center rounded-lg'>
                   <Command className='size-4' />
                 </div>
                 <div className='grid flex-1 text-left text-sm leading-tight'>

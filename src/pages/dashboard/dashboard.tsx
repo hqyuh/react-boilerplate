@@ -3,7 +3,6 @@ import { Metadata } from '@/components/metadata/metadata';
 import { Button } from '@/components/ui/button';
 import useAppTranslation from '@/hooks/useAppTranslation';
 import { useAuthStore } from '@/stores/zustand/auth.store';
-import { useRef } from 'react';
 import type { SubmitHandler } from 'react-hook-form';
 import { useForm } from 'react-hook-form';
 
@@ -27,9 +26,6 @@ const DashboardPage = () => {
     // eslint-disable-next-line no-console
     console.log('🐔 =>  data:', data);
   };
-
-  const thor = useRef<((coords: { x: number; y: number }) => void) | null>(null);
-  console.log('🚀 ~ DashboardPage ~ thor:', thor);
 
   return (
     <>

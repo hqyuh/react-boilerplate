@@ -96,7 +96,6 @@ export default class HttpService {
 
   private readonly onResponseError = async (error: AxiosError) => {
     // " non-null assertion operator | '!' " make sure the config property will not be "null" or "undefined"
-    // eslint-disable-next-line @typescript-eslint/no-unnecessary-type-assertion
     const originalRequest = error.config!;
     const { url } = originalRequest;
     const data = error.response?.data as TErrorResponse;

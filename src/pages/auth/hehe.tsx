@@ -10,8 +10,6 @@ const MyComponent = () => {
     setClicked(clicked + 1);
   };
 
-  console.log('component rendering');
-
   return (
     <div>
       <button type='button' onClick={handleCounterIncrease}>

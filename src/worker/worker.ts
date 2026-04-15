@@ -2,11 +2,8 @@ import { fetchUsers } from '@/worker/data';
 
 const ctx: Worker = self as unknown as Worker;
 
-ctx.addEventListener('message', async (event) => {
-  console.log('🐔 =>  event worker, data:', event.data);
-
+ctx.addEventListener('message', async (_event) => {
   const data = await fetchUsers();
-  console.log('🐔 =>  data:', data);
 
   ctx.postMessage({ data });
 });

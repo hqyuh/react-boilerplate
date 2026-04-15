@@ -25,8 +25,7 @@ const HomeMain = () => {
     reValidateMode: 'onChange'
   });
 
-  const { users, callWorker } = useWorker();
-  console.log('🐔 =>  users:', users);
+  const { users: _users, callWorker } = useWorker();
 
   useEffect(() => {
     (async () => {
@@ -34,11 +33,12 @@ const HomeMain = () => {
     })();
   }, []);
 
-  const onSubmit: SubmitHandler<TFormInputs> = (data: TFormInputs) => console.log(data);
+  const onSubmit: SubmitHandler<TFormInputs> = (data: TFormInputs) => {
+    void data;
+  };
 
   const handleW = async () => {
-    const res = await fetchUsers();
-    console.log('🐔 =>  res:', res);
+    await fetchUsers();
   };
 
   return (

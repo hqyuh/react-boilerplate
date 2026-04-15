@@ -6,12 +6,12 @@ import React, { createContext, useContext } from 'react';
  *
  * @param {string} errorMessage - The error message to throw if the context value is null.
  * @template ContextValue - The type of the context value.
- * @return {[(props: { value: ContextValue; children: React.ReactNode }) => JSX.Element, () => ContextValue]}
+ * @return {[(props: { value: ContextValue; children: React.ReactNode }) => React.JSX.Element, () => ContextValue]}
  * - An array containing the Provider component and the useSafeContext hook.
  */
 export function createSafeContext<ContextValue>(
   errorMessage: string
-): [(props: { value: ContextValue; children: React.ReactNode }) => JSX.Element, () => ContextValue] {
+): [(props: { value: ContextValue; children: React.ReactNode }) => React.JSX.Element, () => ContextValue] {
   const Context = createContext<ContextValue | null>(null);
 
   const useSafeContext = () => {

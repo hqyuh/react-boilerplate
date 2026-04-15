@@ -1,6 +1,6 @@
 import ErrorBoundary from '@/components/error-boundary';
 import RootLayout from '@/layouts/root/root-layout';
-import { Outlet } from 'react-router';
+import { Outlet } from '@tanstack/react-router';
 
 const MainLayout = () => (
   <ErrorBoundary>

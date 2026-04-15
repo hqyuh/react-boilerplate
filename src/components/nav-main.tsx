@@ -3,15 +3,14 @@ import {
   SidebarGroup,
   SidebarGroupLabel,
   SidebarMenu,
-  SidebarMenuAction,
   SidebarMenuButton,
   SidebarMenuItem,
   SidebarMenuSub,
   SidebarMenuSubButton,
   SidebarMenuSubItem
 } from '@/components/ui/sidebar';
+import { Link } from '@tanstack/react-router';
 import { ChevronRight, type LucideIcon } from 'lucide-react';
-import { NavLink } from 'react-router';
 
 export function NavMain({
   items
@@ -32,39 +31,40 @@ export function NavMain({
       <SidebarGroupLabel>Platform</SidebarGroupLabel>
       <SidebarMenu>
         {items.map((item) => (
-          <Collapsible key={item.title} asChild defaultOpen={item.isActive}>
-            <SidebarMenuItem>
+          <SidebarMenuItem key={item.title}>
+            {item.items?.length ? (
+              <Collapsible defaultOpen={item.isActive} className='group/collapsible w-full min-w-0'>
+                <CollapsibleTrigger asChild>
+                  <SidebarMenuButton tooltip={item.title}>
+                    <item.icon />
+                    <span>{item.title}</span>
+                    <ChevronRight className='ml-auto transition-transform duration-200 group-data-[state=open]/collapsible:rotate-90' />
+                    <span className='sr-only'>Toggle</span>
+                  </SidebarMenuButton>
+                </CollapsibleTrigger>
+                <CollapsibleContent>
+                  <SidebarMenuSub>
+                    {item.items.map((subItem) => (
+                      <SidebarMenuSubItem key={subItem.title}>
+                        <SidebarMenuSubButton asChild>
+                          <Link to={subItem.url}>
+                            <span>{subItem.title}</span>
+                          </Link>
+                        </SidebarMenuSubButton>
+                      </SidebarMenuSubItem>
+                    ))}
+                  </SidebarMenuSub>
+                </CollapsibleContent>
+              </Collapsible>
+            ) : (
               <SidebarMenuButton asChild tooltip={item.title}>
-                <NavLink end to={item.url}>
+                <Link to={item.url} activeOptions={{ exact: true }}>
                   <item.icon />
                   <span>{item.title}</span>
-                </NavLink>
+                </Link>
               </SidebarMenuButton>
-              {item.items?.length ? (
-                <>
-                  <CollapsibleTrigger asChild>
-                    <SidebarMenuAction className='data-[state=open]:rotate-90'>
-                      <ChevronRight />
-                      <span className='sr-only'>Toggle</span>
-                    </SidebarMenuAction>
-                  </CollapsibleTrigger>
-                  <CollapsibleContent>
-                    <SidebarMenuSub>
-                      {item.items?.map((subItem) => (
-                        <SidebarMenuSubItem key={subItem.title}>
-                          <SidebarMenuSubButton asChild>
-                            <NavLink to={subItem.url}>
-                              <span>{subItem.title}</span>
-                            </NavLink>
-                          </SidebarMenuSubButton>
-                        </SidebarMenuSubItem>
-                      ))}
-                    </SidebarMenuSub>
-                  </CollapsibleContent>
-                </>
-              ) : null}
-            </SidebarMenuItem>
-          </Collapsible>
+            )}
+          </SidebarMenuItem>
         ))}
       </SidebarMenu>
     </SidebarGroup>

@@ -1,6 +1,6 @@
 import { useAuthContext } from '@/context/auth-context';
+import { Navigate } from '@tanstack/react-router';
 import { Suspense } from 'react';
-import { Navigate } from 'react-router';
 import TopBarProgress from 'react-topbar-progress-indicator';
 
 type TPublic = {

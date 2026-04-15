@@ -4,43 +4,85 @@ import {
   BreadcrumbItem,
   BreadcrumbLink,
   BreadcrumbList,
+  BreadcrumbPage,
   BreadcrumbSeparator
 } from '@/components/ui/breadcrumb';
 import { Separator } from '@/components/ui/separator';
 import { SidebarInset, SidebarProvider, SidebarTrigger } from '@/components/ui/sidebar';
-import { Link, useLocation } from 'react-router';
+import { useLocation, useRouter } from '@tanstack/react-router';
+import { Fragment } from 'react';
 
 type TSideBarLayoutProps = {
   children: React.ReactNode;
 };
 
+/** Turn URL segments into short readable titles (kanban-board → Kanban Board). */
+function formatBreadcrumbLabel(segment: string): string {
+  try {
+    const decoded = decodeURIComponent(segment);
+
+    return decoded
+      .split('-')
+      .filter(Boolean)
+      .map((word) => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
+  } catch {
+    return segment;
+  }
+}
+
 export const SideBarLayout = ({ children }: TSideBarLayoutProps) => {
+  const router = useRouter();
   const location = useLocation();
-  const breadcrumbs = location.pathname
-    .split('/')
-    .filter((crumb) => crumb)
-    .map((crumb, index, array) => ({
-      title: crumb,
-      url: array.slice(0, index + 1).join('/')
-    }));
+  const segments = location.pathname.split('/').filter(Boolean);
+
+  const breadcrumbs = segments.map((segment, index, array) => ({
+    label: formatBreadcrumbLabel(segment),
+    url: array.slice(0, index + 1).join('/'),
+    isLast: index === array.length - 1
+  }));
 
   return (
     <SidebarProvider>
       <AppSidebar />
       <SidebarInset className='min-w-0'>
-        <header className='flex h-16 shrink-0 items-center gap-2'>
-          <div className='flex items-center gap-2 px-4'>
-            <SidebarTrigger className='ml-1' />
-            <Separator orientation='vertical' className='mr-2 h-4' />
-            <Breadcrumb>
-              <BreadcrumbList>
-                {breadcrumbs.map((breadcrumb, index) => (
-                  <BreadcrumbItem key={breadcrumb.url}>
-                    <BreadcrumbLink asChild>
-                      <Link to={`/${breadcrumb.url}`}>{breadcrumb.title}</Link>
-                    </BreadcrumbLink>
-                    {index < breadcrumbs.length - 1 && <BreadcrumbSeparator />}
-                  </BreadcrumbItem>
+        <header className='border-border/50 bg-muted/20 flex h-14 shrink-0 items-center gap-2 border-b backdrop-blur-sm'>
+          <div className='flex min-w-0 flex-1 items-center gap-3 px-4'>
+            <SidebarTrigger className='-ml-0.5 shrink-0' />
+            <Separator orientation='vertical' className='h-5 shrink-0' />
+            <Breadcrumb className='min-w-0'>
+              <BreadcrumbList className='flex-nowrap gap-x-1 gap-y-1 sm:gap-x-1.5'>
+                {breadcrumbs.map((crumb, index) => (
+                  <Fragment key={crumb.url}>
+                    {index > 0 ? (
+                      <BreadcrumbSeparator className='text-muted-foreground/45 mx-0.5 [&>svg]:size-3.5'>
+                        <span aria-hidden className='text-xs font-light select-none'>
+                          /
+                        </span>
+                      </BreadcrumbSeparator>
+                    ) : null}
+                    <BreadcrumbItem className='max-w-[min(100%,12rem)] truncate sm:max-w-[16rem]'>
+                      {crumb.isLast ? (
+                        <BreadcrumbPage className='text-foreground font-medium' title={crumb.label}>
+                          <span className='truncate'>{crumb.label}</span>
+                        </BreadcrumbPage>
+                      ) : (
+                        <BreadcrumbLink asChild>
+                          <a
+                            className='text-muted-foreground hover:text-foreground truncate'
+                            href={`/${crumb.url}`}
+                            title={crumb.label}
+                            onClick={(e) => {
+                              e.preventDefault();
+                              void router.navigate({ to: `/${crumb.url}` });
+                            }}
+                          >
+                            <span className='truncate'>{crumb.label}</span>
+                          </a>
+                        </BreadcrumbLink>
+                      )}
+                    </BreadcrumbItem>
+                  </Fragment>
                 ))}
               </BreadcrumbList>
             </Breadcrumb>

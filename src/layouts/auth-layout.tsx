@@ -1,5 +1,5 @@
 import ErrorBoundary from '@/components/error-boundary';
-import { Outlet } from 'react-router';
+import { Outlet } from '@tanstack/react-router';
 
 const AuthLayout = () => (
   <ErrorBoundary>
